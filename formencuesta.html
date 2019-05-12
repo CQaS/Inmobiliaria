@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Encuesta</title>
+
+    <script>
+
+        function validarFormulario() {
+
+            var txtNombre = document.getElementById('nombre').value;
+            var txtApellido = document.getElementById('apellido').value;
+            var txtCorreo = document.getElementById('mail').value;
+            var txtFechauno = document.getElementById('fecha1').value;
+            var txtFechados = document.getElementById('fecha2').value;
+            var txtArea = document.getElementById('txt').value;
+            var cmbSelectoruno = document.getElementById('selector1').selectedIndex;
+            var cmbSelectordos = document.getElementById('selector2').selectedIndex;
+            var rbtEstado = document.getElementsByName('radioButton');
+            var banderaRBTN = false;
+
+            //campo obligatorio
+            if (txtNombre == null || txtNombre.length == 0 || /^\s+$/.test(txtNombre)) {
+                alert('ERROR: Sr. Turista Debe ingresar su Nombre');
+                return false;
+            }
+
+            //validar apellido
+            if (txtApellido == null || txtApellido.length == 0 || /^\s+$/.test(txtApellido)) {
+                alert('ERROR: Sr. Turista Debe ingresar un Apellido');
+                return false;
+            }
+
+            //validar correo
+            if (!(/\S+@\S+\.\S+/.test(txtCorreo))) {
+                alert('ERROR: Sr. Turista Debe escribir un correo válido');
+                return false;
+            }
+
+            //validar fecha llegada
+            if (!isNaN(txtFechauno)) {
+                alert('ERROR: Sr. Turista Debe elegir una fecha de llegada');
+                return false;
+            }
+
+            //validar fecha partida
+            if (!isNaN(txtFechados)) {
+                alert('ERROR: Sr. Turista Debe elegir una fecha de partida');
+                return false;
+            }
+
+            //validar combo Provincia
+            if (cmbSelectoruno == null || cmbSelectoruno == 0) {
+                alert('ERROR: Sr. Turista Debe seleccionar una opcion de provincia');
+                return false;
+            }
+
+            //validar combo pais
+            if (cmbSelectordos == null || cmbSelectordos == 0) {
+                alert('ERROR: Sr. Turista debe seleccionar una opcion de pais');
+                return false;
+            }
+
+            //comentario
+            if (txtArea == null || txtArea.length == 0 || /^\s+$/.test(txtArea)) {
+                alert('ERROR: Sr. Turistra en comentarios no debe ir vacío!');
+                return false;
+            }
+
+            //validar Radio Boton
+            for (var i = 0; i < rbtEstado.length; i++) {
+                if (rbtEstado[i].checked) {
+                    banderaRBTN = true;
+                    break;
+                }
+            }
+            if (!banderaRBTN) {
+                alert('ERROR: Sr. Turista Debe elegir una opción de radio button');
+                return false;
+            }
+
+            return true;
+        }
+
+    </script>
+
+</head>
+
+<body bgcolor="turquoise">
+
+    <h1>ENCUESTA AL TURISTA</h1>
+
+    <form method="POST" action="index.html" onsubmit="return validarFormulario()">
+
+        <label><big><big>Nombre :</big></big></label>
+        <input type="text" name="nombre" id="nombre"><br><br>
+        <label><big><big>Apellido:</big></big></label>
+        <input type="text" name="apellido" id="apellido"><br><br>
+        <label><big><big>E-mail:</big></big></label>
+        <input type="email" id="mail"><br><br>
+
+        <label>
+            <span>Sexo:</span>
+        </label>
+        <input type="radio" id="radioButton" name="radioButton"> Hombre
+        <input type="radio" id="radioButton" name="radioButton"> Mujer
+        <input type="radio" id="radioButton" name="radioButton"> Otro<br><br>
+        
+        <label>Fecha de llegada:</label>
+        <input type="date" name="fecha1" id="fecha1">
+        <label>Fecha de partida:</label>
+        <input type="date" name="fecha2" id="fecha2"><br><br>
+
+        <tr>
+            <td>Provincia de Origen</td>
+            <td><select id="selector1" name="selector1">
+                <option value=""></option>
+                    <option value="Arg">BsAs</option>
+                    <option value="sl">SL</option>
+                    <option value="mza">Mza</option>
+                    <option value="sj">SJ</option>
+                    <option value="lp">LP</option>
+                    <option value="sf">StaFE</option>
+                    <option value="er">ER</option>
+                </select></td>
+        </tr>
+
+        <tr>
+            <td>Pais de Origen</td>
+            <td><select id="selector2" name="selector2">
+                <option value="Arg"></option>
+                <option value="Arg">Argentina</option>
+                    <option value="Bra">Brazil</option>
+                    <option value="Chl">Chile</option>
+                    <option value="Ury">Uruguay</option>
+                    <option value="Pay">Paraguay</option>
+                </select></td>
+        </tr>
+        <br><br>
+
+        <tr>
+            <td>
+                <h2>Comentario</h2>
+            </td>
+            <td><textarea name="comen" id="txt" value="texto" rows="5" cols="40"></textarea>
+            </td>
+        </tr><br>
+        <input type="submit" value="enviar">
+        <input type="reset" value="Borrar">
+    </form>
+    <br>
+
+    <br><br><br>
+</body>
+
+</html>

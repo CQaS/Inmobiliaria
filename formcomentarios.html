@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comentarios</title>
+
+    <script>
+        function validarFormulario() {
+
+            var txtNombre = document.getElementById('nombre').value;
+            var txtArea = document.getElementById('txt').value;
+            var txtCorreo = document.getElementById('correo').value;
+            var banderaRBTN = false;
+
+            //campo obligatorio
+            if (txtNombre == null || txtNombre.length == 0 || /^\s+$/.test(txtNombre)) {
+                alert('ERROR: En el campo nombre no debe ir vacío, dinos tu Nombre por Favor!');
+                return false;
+            }
+
+            //comentario
+            if (txtArea == null || txtArea.length == 0 || /^\s+$/.test(txtArea)) {
+                alert('ERROR: En el campo de comentarios no debe ir vacío!');
+                return false;
+            }
+            //correo
+            if (!(/\S+@\S+\.\S+/.test(txtCorreo))) {
+                alert('ERROR: Debes ingresar un correo! ');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</head>
+
+<body bgcolor="pink">
+    <center>
+        <h1>DEJANOS TU COMENTARIO</h1>
+        <hr size="8" width="37%">
+        <form method="POST" action="index.html" onsubmit="return validarFormulario()">
+
+            <label><big><big>Ingrese su Nombre:</big></big></label>
+            <input type="text" id="nombre" name="nombre"><br><br>
+            <label><big><big>E-mail:</big></big></label>
+            <input type="email" id="correo"><br><br>
+
+            <tr>
+                <td>
+                    <h2>Comentario</h2>
+                </td>
+                <td><textarea name="comen" id="txt" value="texto" rows="5" cols="40"></textarea>
+                </td>
+            </tr><br>
+            <input type="submit" value="enviar">
+            <input type="reset" value="Borrar" />
+        </form>
+        <br>
+        <hr size="8" width="37%">        
+    </center>
+</body>
+
+</html>
